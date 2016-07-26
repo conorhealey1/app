@@ -5,33 +5,11 @@ demo:
   links:
     - redis
     - postgres
-redis:
-  image: redis:2.6.17
-postgres:
-   image: postgres:9.3.6
-demo:
-  build:
-    image: myapp
-    dockerfile_path: Dockerfile
-  links:
-    - redis
-    - postgres
   environment:
     TEST_TOKEN: Testing123
-- type: parallel
-  steps:
-    - name: checkrb
-      service: demo
-      command: bundle exec ruby check.rb
-    - name: test
-      service: demo
-      command: bundle exec ruby test.rb
 
-- type: serial
-  steps:
-    - name: dockerhub_push
-      service: checkrb
-      type: push
-      image_name: account/repo
-      registry: https://index.docker.io/v1/
-      encrypted_dockercfg_path: dockercfg.encrypted
+redis:
+  image: redis:3.0.5
+
+postgres:
+   image: postgres:9.3.6
