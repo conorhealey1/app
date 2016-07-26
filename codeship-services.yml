@@ -5,14 +5,13 @@ demo:
   links:
     - redis
     - postgres
-  environment:
-    TEST_TOKEN: Testing123
   volumes:
-    - ./tmp:/code
+    - ./tmp:/app
+  cached: true
 
 demo_volumes:
   build:
-    image: myapp
+    image: conor
     dockerfile_path: Dockerfile.volumes
   volumes_from:
     - demo
