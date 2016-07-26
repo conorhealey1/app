@@ -9,4 +9,3 @@ PLATFORMS
 
 DEPENDENCIES
   pg
-  redis
